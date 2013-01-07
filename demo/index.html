@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript przetwarzanie obrazów</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Arkadiusz Marchut" />
+		<meta name="keywords" content="" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script  type="text/javascript" src="js/eRGBA.js"></script>
+		<script  type="text/javascript" src="js/app.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-37468980-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+	</head>
+	<body>
+		<div class="workspace-wrap">
+			<div class="workspace" style="border: solid 1px grey; margin: 0 auto;">
+				<canvas id="image-can" width="400" height="400"></canvas>
+			</div>
+		</div>
+		<div class="buttons-set">
+			<button id="invert-filter">
+				Inwersja
+			</button>
+			<button id="low-filter">
+				Filtr dolnoprzpustowy
+			</button>
+			<button id="custom-filter">
+				Własny Filtr
+			</button>
+			<button id="reset-filter">
+				Odswierz
+			</button>
+		</div>
+
+		<div id="pixel-data">
+			Wartości RGBA dla poszczególnego pixela
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>[x,y]</td>
+					<td class="x_y">[ - , - ]</td>
+				</tr>
+				<tr>
+					<td>R:</td>
+					<td class="red"> - </td>
+				</tr>
+				<tr>
+					<td>G:</td>
+					<td class="green"> - </td>
+				</tr>
+				<tr>
+					<td>B:</td>
+					<td class="blue"> - </td>
+				</tr>
+				<tr>
+					<td>A:</td>
+					<td class="alpha"> - </td>
+				</tr>
+			</table>
+		</div>
+		<div id="custom-win" style="display: none; position: fixed; top:0; left:0; background: white">
+			<div id="custom-filter-values">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>
+						<input size="2" type="text" value="1" />
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="filter-list">
+				Rodzaj Filtru:
+				<button class="low-filter">
+					dolnoprzpustowy
+				</button>
+				<button class="high-pass-filter">
+					górnoprzepustowy
+				</button>
+				<button class="high-pass-filter-h3">
+					górnoprzepustowy HP3
+				</button>
+				<button class="oblique-filter">
+					krawędzie ukośne
+				</button>
+				<button class="LAPL-filter">
+					Laplace'a
+				</button>
+			</div>
+			<div class="buttons">
+				<button class="close">
+					Zamknij Okno
+				</button>
+				<button class="set">
+					Zastsouj
+				</button>
+			</div>
+		</div>
+	</body>
+</html>
