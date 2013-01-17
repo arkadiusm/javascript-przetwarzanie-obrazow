@@ -28,7 +28,7 @@
 	</head>
 	<body>
 		<div class="workspace-wrap">
-			<div class="workspace" style="border: solid 1px grey; margin: 0 auto;">
+			<div class="workspace">
 				<canvas id="image-can" width="400" height="400"></canvas>
 			</div>
 		</div>
@@ -39,40 +39,59 @@
 			<button id="low-filter">
 				Filtr dolnoprzpustowy
 			</button>
-			<button id="custom-filter">
-				Własny Filtr
-			</button>
+
 			<button id="reset-filter">
-				Odswierz
+				Przywróć oryg.
 			</button>
+			<div>
+				<button id="rgba-read">
+					RGBA
+				</button>
+				<button id="custom-filter">
+					Własny Filtr
+				</button>
+			</div>
 		</div>
 
-		<div id="pixel-data">
-			Wartości RGBA dla poszczególnego pixela
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>[x,y]</td>
-					<td class="x_y">[ - , - ]</td>
-				</tr>
-				<tr>
-					<td>R:</td>
-					<td class="red"> - </td>
-				</tr>
-				<tr>
-					<td>G:</td>
-					<td class="green"> - </td>
-				</tr>
-				<tr>
-					<td>B:</td>
-					<td class="blue"> - </td>
-				</tr>
-				<tr>
-					<td>A:</td>
-					<td class="alpha"> - </td>
-				</tr>
-			</table>
+		<div id="rgba-win" class="ui-win">
+			<div class="ui-win-title">
+				RGBA
+			</div>
+			<button class="close">
+				Zamknij Okno
+			</button>
+			<div id="pixel-data">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>X,Y:</td>
+						<td class="x_y"> - , - </td>
+					</tr>
+					<tr>
+						<td>R:</td>
+						<td class="red"> - </td>
+					</tr>
+					<tr>
+						<td>G:</td>
+						<td class="green"> - </td>
+					</tr>
+					<tr>
+						<td>B:</td>
+						<td class="blue"> - </td>
+					</tr>
+					<tr>
+						<td>A:</td>
+						<td class="alpha"> - </td>
+					</tr>
+				</table>
+			</div>
 		</div>
-		<div id="custom-win" style="display: none; position: fixed; top:0; left:0; background: white">
+		<div id="custom-win" class="ui-win">
+			<div class="ui-win-title">
+				Filtr o masce 3x3
+			</div>
+			<button class="close">
+				Zamknij Okno
+			</button>
 			<div id="custom-filter-values">
 				<table border="0" cellspacing="0" cellpadding="0">
 					<tr>
@@ -111,7 +130,7 @@
 				</table>
 			</div>
 			<div class="filter-list">
-				Rodzaj Filtru:
+				Przykłady filtrów:
 				<button class="low-filter">
 					dolnoprzpustowy
 				</button>
@@ -129,9 +148,6 @@
 				</button>
 			</div>
 			<div class="buttons">
-				<button class="close">
-					Zamknij Okno
-				</button>
 				<button class="set">
 					Zastsouj
 				</button>

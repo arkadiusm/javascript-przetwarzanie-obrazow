@@ -97,9 +97,11 @@ var attachFilter = function(imgData, filter) {
 		}
 	}
 };
+
+
+
 var ctx, canvas, img;
-// wykonanie funkcji po wczytaniu całego dokumentu
-$(function() {
+$(function() {// wykonanie funkcji po wczytaniu całego dokumentu
 
 	canvas = document.getElementById('image-can');
 
@@ -121,9 +123,6 @@ $(function() {
 		ctx.drawImage(img, 0, 0);
 
 		imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-		//odczytywanie wartości pixla w obrazie
-		readPixels(imgData);
 
 		//wywołanie inwersji kolorów dla danego obrazka
 		$('#invert-filter').click(function() {
@@ -151,7 +150,9 @@ $(function() {
 			readPixels(imgData);
 		});
 
-		//własny filtr
+		/*
+		 *  Zastoswoanie własnego filtru w macierzy 3x3 
+		 */
 		$('#custom-filter').click(function() {
 			//przykładowe filtry
 			var lowfilter = [1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -163,7 +164,7 @@ $(function() {
 				'display' : 'block'
 			});
 
-			//wczytanie filtrów do obiektów
+			//wczytanie filtrów do komórek
 			$('#custom-win .low-filter').click(function() {
 				$('#custom-filter-values input').each(function(i) {
 					$(this).val(lowfilter[i]);
@@ -208,9 +209,22 @@ $(function() {
 			});
 
 		});
+		/*
+		 *  Okno odczytywania kanału RGBA
+		 */
+		$('#rgba-read').click(function(){
+			$('#rgba-win').css({
+				'display' : 'block'
+			});
+			readPixels(imgData);
+			$('#rgba-win .close').click(function() {
+				$('#rgba-win').css({
+					"display" : "none"
+				});
+			});
+		});
 	});
 
 	//wczytanie przykładowego zdjęcia Lenna.png
 	img.src = "imgs/Lenna.png";
 });
-

@@ -48,28 +48,67 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
   font-family: Arial, "MS Trebuchet", sans-serif; }
 
-#custom-win {
-  width: 200px;
-  border: solid 1px #333;
-  -webkit-box-shadow: black 0px 0px 10px;
-  -moz-box-shadow: black 0px 0px 10px;
-  box-shadow: black 0px 0px 10px;
-  margin: 15px; }
-  #custom-win #custom-filter-values {
-    width: 110px;
-    margin: 10px auto; }
-  #custom-win .filter-list {
-    text-align: center;
-    background: #EEE; }
-  #custom-win .buttons {
-    padding: 10px;
-    text-align: center; }
+.workspace {
+  border: solid 1px grey;
+  margin: 0 auto; }
 
-#pixel-data {
-  padding: 20px; }
+#custom-win #custom-filter-values {
+  width: 110px;
+  margin: 10px auto; }
+
+#rgba-win {
+  right: 0; }
+  #rgba-win table tr td {
+    padding-right: 15px; }
+
+.filter-list {
+  padding: 5px 0;
+  text-align: center;
+  background: #EEE; }
+
+.buttons {
+  text-align: center; }
+  .buttons button {
+    margin-top: 5px;
+    padding: 10px; }
 
 .buttons-set {
   margin: 15px; }
 
 .workspace-wrap {
   padding: 15px; }
+
+.ui-win {
+  display: none;
+  width: 200px;
+  border: solid 1px #333;
+  -webkit-box-shadow: black 0px 0px 10px;
+  -moz-box-shadow: black 0px 0px 10px;
+  box-shadow: black 0px 0px 10px;
+  margin: 15px;
+  padding: 0 10px 10px 10px;
+  position: fixed;
+  top: 0;
+  background: white; }
+  .ui-win .ui-win-title {
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+    border-bottom: solid 1px #EEE; }
+  .ui-win .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: url("../imgs/close.png") top left no-repeat;
+    text-indent: -9999em;
+    width: 18px;
+    height: 18px;
+    background-position: -10px -10px; }
+    .ui-win .close:hover {
+      background-position: -38px -10px; }
+    .ui-win .close:active {
+      background-position: -66px -10px; }
