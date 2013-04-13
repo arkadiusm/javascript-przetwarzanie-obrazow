@@ -1,34 +1,157 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Javascript-przetwarzanie-obrazow by arkadiusm</title>
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript przetwarzanie obrazów</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Arkadiusz Marchut" />
+		<meta name="keywords" content="" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script  type="text/javascript" src="js/eRGBA.js"></script>
+		<script  type="text/javascript" src="js/app.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-37468980-1']);
+			_gaq.push(['_trackPageview']);
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Java Script - przetwarzanie obrazów</h1>
-        <p>Przetwarzanie obrazów w przeglądarce za pomocą java script z użyciem elementu canvas. </p>
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
 
-        <p class="view"><a href="https://github.com/arkadiusm/javascript-przetwarzanie-obrazow">Zobacz projekt w GitHub <small>arkadiusm/javascript-przetwarzanie-obrazow</small></a></p>
+		</script>
+	</head>
+	<body>
+		<div class="workspace-wrap">
+			<div class="workspace">
+				<canvas id="image-can" width="400" height="400"></canvas>
+			</div>
+		</div>
+		<div class="buttons-set">
+			<button id="invert-filter">
+				Inwersja
+			</button>
+			<button id="low-filter">
+				Filtr dolnoprzpustowy
+			</button>
 
+			<button id="reset-filter">
+				Przywróć oryg.
+			</button>
+			<div>
+				<button id="rgba-read">
+					RGBA
+				</button>
+				<button id="custom-filter">
+					Własny Filtr
+				</button>
+			</div>
+		</div>
 
-        <ul>
-          <li><a href="https://github.com/arkadiusm/javascript-przetwarzanie-obrazow/zipball/master">Poiberz <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/arkadiusm/javascript-przetwarzanie-obrazow/tarball/master">Pobierz <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/arkadiusm/javascript-przetwarzanie-obrazow">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>Java Script - przetwarzanie obrazów.</h3>
-      </scetion>
-  </body>
+		<div id="rgba-win" class="ui-win">
+			<div class="ui-win-title">
+				RGBA
+			</div>
+			<button class="close">
+				Zamknij Okno
+			</button>
+			<div id="pixel-data">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>X,Y:</td>
+						<td class="x_y"> - , - </td>
+					</tr>
+					<tr>
+						<td>R:</td>
+						<td class="red"> - </td>
+					</tr>
+					<tr>
+						<td>G:</td>
+						<td class="green"> - </td>
+					</tr>
+					<tr>
+						<td>B:</td>
+						<td class="blue"> - </td>
+					</tr>
+					<tr>
+						<td>A:</td>
+						<td class="alpha"> - </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="custom-win" class="ui-win">
+			<div class="ui-win-title">
+				Filtr o masce 3x3
+			</div>
+			<button class="close">
+				Zamknij Okno
+			</button>
+			<div id="custom-filter-values">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>
+						<input size="2" type="text" value="1" />
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+						<td>
+						<input size="2" type="text" value="1"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="filter-list">
+				Przykłady filtrów:
+				<button class="low-filter">
+					dolnoprzpustowy
+				</button>
+				<button class="high-pass-filter">
+					górnoprzepustowy
+				</button>
+				<button class="high-pass-filter-h3">
+					górnoprzepustowy HP3
+				</button>
+				<button class="oblique-filter">
+					krawędzie ukośne
+				</button>
+				<button class="LAPL-filter">
+					Laplace'a
+				</button>
+			</div>
+			<div class="buttons">
+				<button class="set">
+					Zastsouj
+				</button>
+			</div>
+		</div>
+	</body>
 </html>
